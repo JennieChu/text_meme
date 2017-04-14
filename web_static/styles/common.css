@@ -1,7 +1,60 @@
 body {
-    font-family: Circular,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-family: Circular,"Avenir Next",Helvetica,Arial,sans-serif;
     font-color: #484848;
     font-size: 14px;
     margin: 0;
     padding: 0;
+}
+
+.meme_container {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  /* You can set flex-wrap and flex-direction individually */
+  -webkit-flex-direction: row;
+  flex-direction: row;
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
+  /* Or do it all in one line with flex flow */
+  -webkit-flex-flow: row wrap;
+  flex-flow: row wrap;
+  /* tweak the where items line up on the row */
+  /* valid values are: flex-start, flex-end, space-between, space-around, stretch */
+  -webkit-align-content: flex-end;
+  align-content: flex-end;
+  padding: 0 15%;
+  padding-top: 5%;
+  padding-bottom: 10%;
+}
+
+.meme_container img {
+    height: 150px;
+    padding-left: 10px;
+}
+
+.search {
+    border: 1px solid #1985A1;
+    height: 40px;
+    width: 40%;
+    border-radius: 4px;
+    position: relative;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+.title, .divider {
+  text-align: center;
+  color: #1985A1;
+}
+
+.title {
+  padding-top: 20px;
+  font-size: 30px;
+}
+
+.divider {
+  font-size: 25px;
 }
