@@ -1,0 +1,54 @@
+header {
+  background-color:#1985A1;
+  width: 100%;
+  height: 70px;
+  color: #DCDCDD;
+  font-family: Circular,"Helvetica Neue",Helvetica,Arial,sans-serif;
+
+  display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+
+	-ms-flex-align: center;
+	-webkit-align-items: center;
+	-webkit-box-align: center;
+
+	align-items: center;
+}
+
+.logo {
+  font-size: 40px;
+  padding-left: 3%;
+  flex: 3 0 0;
+}
+
+#phrase {
+  font-size: 16px;
+  padding: 20px;
+}
+
+.nav {
+  list-style-type: none;
+  float: left;
+  flex: 1 0 0;
+  padding-right: 3%;
+  text-align: center;
+}
+
+li a {
+    display: inline-block;
+    color: #dcdcdd;
+    text-align: center;
+    text-decoration: none;
+}
+
+li {
+  float: right;
+  text-decoration: none;
+  display: inline-block;
+  width: 33%;
+}
+
+li a:hover {
+  color: #b19994;
+}
