@@ -17,7 +17,7 @@ def display():
     content = [x.strip() for x in content]
     content_url = []
     for i in content:
-        new_url = "http://apimeme.com/meme?meme=" + i + "&top=&bottom="
+        new_url = "../static/images/memages/" + i
         content_url.append(new_url)
 
     return render_template("meme_check.html", content=content_url)
