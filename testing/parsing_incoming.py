@@ -3,7 +3,6 @@
 Functions to parse incoming text messages
 """
 import sys
-import re
 
 
 def parse_inbound(message):
@@ -21,7 +20,15 @@ def parse_inbound(message):
     if message[-1] is "":
         del message[-1]
 
-    return (message)
+    # Determine type of user request
+    if "help" in message[0]:
+        request = "HELP"
+    elif "available" in message[0]:
+        request = "AVAIL"
+    else:
+        request = "MEME"
+
+    return request, message
 
 
 if __name__ == "__main__":
