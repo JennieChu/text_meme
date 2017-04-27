@@ -23,7 +23,7 @@ def inbound_sms():
 
     # Parse the response based on new lines or period,
     # Returns a list of arguments
-    request, message = parse_inbound(inbound_message)
+    message = parse_inbound(inbound_message)
 
     # Convert message arguments to be url ready
     ready_message = convert_spaces(message)

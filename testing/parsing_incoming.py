@@ -28,7 +28,7 @@ def parse_inbound(message):
     else:
         request = "MEME"
 
-    return request, message
+    return message
 
 
 if __name__ == "__main__":
