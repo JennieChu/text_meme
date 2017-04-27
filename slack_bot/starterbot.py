@@ -1,6 +1,9 @@
 import os
 import time
+import requests
 from slackclient import SlackClient
+from parsing_incoming import parse_inbound
+from space_conversion import convert_spaces
 
 # starterbot's ID as an environment variable
 BOT_ID = os.environ.get("BOT_ID")
@@ -18,15 +21,20 @@ def handle_command(command, channel):
         are valid commands. If so, then acts on the commands. If not,
         returns back what it needs for clarification.
     """
-    response = "Not sure what you mean. Use the *" + EXAMPLE_COMMAND + \
-               "* command with numbers, delimited by spaces."
-    if command.startswith(EXAMPLE_COMMAND):
-        response = "Sure...write some more code then I can do that!"
-
-    response = command
+    message = parse_inbound(command)
+    ready_message = convert_spaces(message)
+    if len(ready_message) < 3:
+        for i in range(3 - len(ready_message)):
+            ready_message.append("")
+    meme_url = "http://apimeme.com/meme?meme={}&top={}&bottom={}".format(
+        ready_message[0], ready_message[1], ready_message[2])
+    r = requests.get(meme_url)
+    if 'No meme found' not in r.text:
+        response = meme_url
+    else:
+        response = "https://img.memesuper.com/abd9230cf6066288b1ddce774a9baeee_do-you-even-meme-do-u-even-meme_400-400.jpeg"
     slack_client.api_call("chat.postMessage", channel=channel,
                           text=response, as_user=True)
-
 
 def parse_slack_output(slack_rtm_output):
     """
