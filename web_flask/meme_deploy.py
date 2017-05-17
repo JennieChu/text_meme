@@ -2,6 +2,7 @@
 """
 python program deploying site with list of available memes
 """
+from collections import OrderedDict
 from flask import Flask, render_template
 
 app = Flask(__name__)
@@ -15,10 +16,10 @@ def display():
         content = f.readlines()
 
     content = [x.strip() for x in content]
-    content_url = []
+    content_url = OrderedDict()
     for i in content:
         new_url = "../static/images/memages/" + i
-        content_url.append(new_url)
+        content_url[new_url] = i.replace('+', ' ')
 
     return render_template("meme_check.html", content=content_url)
 

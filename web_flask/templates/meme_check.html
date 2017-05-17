@@ -29,10 +29,10 @@
       </div>
       <div class="memes">
         <div class="meme_container">
-	  {% for image_url in content %}
+	  {% for image_url, name in content.items() %}
 	  <div class="img_box">
 	    <div class="image"> <img src="{{image_url}}"></div>
-	    <p> Name of Meme</p>
+	    <p> {{name}}</p>
 	  </div>
 	  {% endfor %}
         </div>
