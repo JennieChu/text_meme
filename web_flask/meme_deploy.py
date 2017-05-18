@@ -12,7 +12,7 @@ def display():
     """
     return a website
     """
-    with open('meme_list') as f:
+    with open('/home/ubuntu/text_meme/web_flask/meme_list') as f:
         content = f.readlines()
 
     content = [x.strip() for x in content]
@@ -24,4 +24,4 @@ def display():
     return render_template("meme_check.html", content=content_url)
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0")
+    app.run(host="0.0.0.0", port=5001)

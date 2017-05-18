@@ -36,7 +36,6 @@ def inbound_sms():
     meme_url = "http://apimeme.com/meme?meme={}&top={}&bottom={}".format(
         ready_message[0], ready_message[1], ready_message[2])
 
-
     # Responds with the meme with the img 
     msg = Message().body("Here is your {} meme".format(message[0])).media(meme_url)
     response.append(msg)
