@@ -24,12 +24,17 @@ def inbound_sms():
     # Get the SMS message from the request
     inbound_message = request.form.get("Body")
 
+    #parse inbound message
+
+    message = parse_inbound(inbound_message)
+    meme = message[0] + ".jpg"
+    top = message[1]
+    bot = message[2]
 
     # Responds with the meme with the img 
-    msg = Message().body("Here is your meme").media('http://localhost:8080/api/v1/get_image')
-#    response.append(Message().body("HMM"))
+    url = 'http://34.210.213.199:8080/api/v1/get_image/' + meme + ':' + top + ':' + bot
+    msg = Message().body("Here is your meme").media(url)
     response.append(msg)
-    print("hmmmm")
     return Response(str(response), mimetype="application/xml"), 200
 
 if __name__ == "__main__":

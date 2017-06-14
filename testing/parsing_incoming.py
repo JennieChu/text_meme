@@ -14,21 +14,24 @@ def parse_inbound(message):
     message = message.split('.')
 
     # Capitalize first letter of each word for meme
-    message[0] = message[0].title()
+    message[0] = message[0].lower()
+    message[0] = message[0].replace(" ", "-")
+
+    # Connect messages for api
+    try:
+        message[1] = message[1].replace(" ", "_")
+    except:
+        message.append("NONEMSG")
+    try:
+        message[2] = message[2].replace(" ", "_")
+    except:
+        message.append("NONEMSG")
+
+    return message
 
     # Removes empty element
     if message[-1] is "":
         del message[-1]
-
-    # Determine type of user request
-    if "help" in message[0]:
-        request = "HELP"
-    elif "available" in message[0]:
-        request = "AVAIL"
-    else:
-        request = "MEME"
-
-    return message
 
 
 if __name__ == "__main__":

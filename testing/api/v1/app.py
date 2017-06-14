@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-from PIL import Image, ImageDraw
+from PIL import Image, ImageDraw, ImageFont
 from io import StringIO
 from io import BytesIO
 from flask import Flask, render_template, jsonify, send_file
@@ -7,24 +7,63 @@ import json
 
 app = Flask(__name__)
 
-@app.route('/api/v1/get_image', methods=['GET','POST'],
+@app.route('/api/v1/get_image/<meme>:<top>:<bottom>', methods=['GET','POST'],
            strict_slashes=False)
-def get_image():
-    """ Returns an image given id """
-    image = Image.new("RGB", (100, 100))
-    draw = ImageDraw.Draw(image)
-
+def get_image(meme, top="", bottom=""):
+    """ Create and returna an image with placed text"""
+    image = create_image(meme, top, bottom)
     byte_io = BytesIO()
     image.save(byte_io, 'PNG')
     byte_io.seek(0)
     return send_file(byte_io, mimetype='image/png')
 
-def serve_pil_image(pil_path):
-    img_io = BytesIO()
-#    pil_image = Image.open(pil_path)
-    pil_image.save(img_io, 'PNG', quality=70)
-#    img_io.seek(0)
-    return send_file(img_io, mimetype='image/jpeg')
+def create_image(meme, top, bottom):
+    """ Create and return the selected meme"""
+
+    """ Checks if top or bottom contained no strings """
+    if top == "NONEMSG":
+        top = " "
+    else:
+        top = top.replace("_", " ")
+    if bottom == "NONEMSG":
+        bottom = " "
+    else:
+        bottom = bottom.replace("_", " ")
+    
+    """ Opens image to check """
+    imageFile = '../../images/' + meme
+    image = Image.open(imageFile)
+    draw = ImageDraw.Draw(image)
+
+    """Create text on top of image"""
+    W, H = image.size
+    fontsize = 1
+    img_fraction = 0.75
+
+    font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/impact.ttf", fontsize)
+    while font.getsize(top)[0] < img_fraction*image.size[0]:
+        fontsize += 1
+        font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/impact.ttf", fontsize)
+
+    bot_fontsize = 1
+    bot_font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/impact.ttf", bot_fontsize)
+    while bot_font.getsize(bottom)[0] < img_fraction*image.size[0]:
+        bot_fontsize += 1
+        bot_font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/impact.ttf", bot_fontsize)
+
+    """ Resize font if too large """
+    if fontsize > 100:
+        font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/impact.ttf", 75)
+    if bot_fontsize > 90:
+        bot_font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/impact.ttf", 75)
+
+    w, h = draw.textsize(top, font)
+    b_w, b_h = draw.textsize(bottom, bot_font)
+    draw.text(((W-w)/2, 0), top, font=font)
+    draw.text(((W-b_w)/2, (H-b_h)), bottom, font=bot_font)
+    draw = ImageDraw.Draw(image)
+
+    return (image)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port='8080')
