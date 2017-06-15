@@ -14,12 +14,14 @@ def parse_inbound(message):
     message = message.split('.')
 
     # Capitalize first letter of each word for meme
-    message[0] = message[0].lower()
-    message[0] = message[0].replace(" ", "-")
+    message[0] = message[0].title()
+    message[0] = message[0].replace(" ", "+")
 
     # Connect messages for api
     try:
         message[1] = message[1].replace(" ", "_")
+        if message[1] == "":
+            message[1] = "NONEMSG"
     except:
         message.append("NONEMSG")
     try:

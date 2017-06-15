@@ -25,9 +25,8 @@ def inbound_sms():
     inbound_message = request.form.get("Body")
 
     #parse inbound message
-
     message = parse_inbound(inbound_message)
-    meme = message[0] + ".jpg"
+    meme = message[0]
     top = message[1]
     bot = message[2]
 

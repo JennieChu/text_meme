@@ -20,7 +20,7 @@ def get_image(meme, top="", bottom=""):
 def create_image(meme, top, bottom):
     """ Create and return the selected meme"""
 
-    """ Checks if top or bottom contained no strings """
+    # Checks if top or bottom contained no strings
     if top == "NONEMSG":
         top = " "
     else:
@@ -30,12 +30,12 @@ def create_image(meme, top, bottom):
     else:
         bottom = bottom.replace("_", " ")
     
-    """ Opens image to check """
-    imageFile = '../../images/' + meme
+    # Opens image to check
+    imageFile = '../../../web_flask/static/images/memages/' + meme
     image = Image.open(imageFile)
     draw = ImageDraw.Draw(image)
 
-    """Create text on top of image"""
+    # Create text on top of image
     W, H = image.size
     fontsize = 1
     img_fraction = 0.75
@@ -51,17 +51,20 @@ def create_image(meme, top, bottom):
         bot_fontsize += 1
         bot_font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/impact.ttf", bot_fontsize)
 
-    """ Resize font if too large """
+    # Resize font if too large
     if fontsize > 100:
         font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/impact.ttf", 75)
     if bot_fontsize > 90:
         bot_font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/impact.ttf", 75)
 
+    # Draws the image
     w, h = draw.textsize(top, font)
     b_w, b_h = draw.textsize(bottom, bot_font)
     draw.text(((W-w)/2, 0), top, font=font)
     draw.text(((W-b_w)/2, (H-b_h)), bottom, font=bot_font)
     draw = ImageDraw.Draw(image)
+
+    print("HELLO")
 
     return (image)
 
