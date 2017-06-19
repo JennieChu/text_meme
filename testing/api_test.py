@@ -1,11 +1,13 @@
 #!/usr/bin/python3
 from flask import Flask, Response, request
+from twilio.rest import Client
 from twilio.twiml.messaging_response import MessagingResponse, Body, Media, Message
 from parsing_incoming import parse_inbound
 from space_conversion import convert_spaces
 from tempfile import NamedTemporaryFile
 from shutil import copyfileobj
 from os import remove
+import os
 import requests
 
 app = Flask(__name__)
@@ -20,9 +22,23 @@ def inbound_sms():
     """
     Function that receives an SMS and returns necessary information
     """
+    account_sid = os.environ['account_sid']
+    auth_token = os.environ['auth_token']
+
+    client = Client(account_sid, auth_token)
+    caller_ids = client.outgoing_caller_ids.list()
+
     response = MessagingResponse()
     # Get the SMS message from the request
     inbound_message = request.form.get("Body")
+    
+    # Gets the incoming SMS phone number
+    inbound_number = request.form.get ("From")
+    number_list = [caller.phone_number for caller in caller_ids]
+    if  inbound_number in number_list:
+        print('FOUND')
+    else:
+        print('NOT FOUND')
 
     #parse inbound message
     message = parse_inbound(inbound_message)
