@@ -7,6 +7,10 @@ import json
 
 app = Flask(__name__)
 
+@app.route('/add_number/<number>', methods=['GET', 'POST'], strict_slashes=False)
+def add_number(number):
+    pass
+
 @app.route('/api/v1/get_image/<meme>:<top>:<bottom>', methods=['GET','POST'],
            strict_slashes=False)
 def get_image(meme, top="", bottom=""):
@@ -29,7 +33,7 @@ def create_image(meme, top, bottom):
         bottom = " "
     else:
         bottom = bottom.replace("_", " ")
-    
+
     # Opens image to check
     imageFile = '../../../web_flask/static/images/memages/' + meme
     image = Image.open(imageFile)

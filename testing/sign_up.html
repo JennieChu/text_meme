@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en" ng-app="signUp">
+<head>
+  <meta charset="utf-8">
+  <title>Wiki-Trail</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
+  <script src="signup.js"></script>
+</head>
+
+<body ng-view ng-controller="mainController">
+  <div class="header">
+    <h1 id='title'>Sign Up</h1>
+  </div>
+  <div class="input">
+    <div class="src">
+      <p> Enter your phone number </p>
+      <input ng-model="phoneNumber" type='text' placeholder="Ex. 14151234567">
+    </div>
+    <div class="btn">
+      <button ng-click="click(phoneNumber)" class="inputBtn">Sign Me Up!</button>
+    </div>
+  </div>
+  {{number}}
+</body>
+
+</html>
