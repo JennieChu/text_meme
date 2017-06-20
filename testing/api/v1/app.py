@@ -4,12 +4,20 @@ from io import StringIO
 from io import BytesIO
 from flask import Flask, render_template, jsonify, send_file
 import json
+import requests
+import os
 
 app = Flask(__name__)
 
 @app.route('/add_number/<number>', methods=['GET', 'POST'], strict_slashes=False)
 def add_number(number):
-    pass
+    account_sid = os.environ['account_sid']
+    auth_token = os.environ['auth_token']
+    url = 'https://'+ account_sid + ':' + auth_token + '@api.twilio.com/2010-04-01/Accounts/'+ account_sid + '/OutgoingCallerIds'
+    data = {'PhoneNumber': number}
+    r = requests.post(url, data = data)
+    print(r.text)
+    return r.text
 
 @app.route('/api/v1/get_image/<meme>:<top>:<bottom>', methods=['GET','POST'],
            strict_slashes=False)

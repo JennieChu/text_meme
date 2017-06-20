@@ -38,7 +38,9 @@ def inbound_sms():
     if  inbound_number in number_list:
         print('FOUND')
     else:
-        print('NOT FOUND')
+        url = 'http://34.210.213.199:8080/add_number/' + inbound_number
+        r = requests.get(url)
+        print(r.text)
 
     #parse inbound message
     message = parse_inbound(inbound_message)
