@@ -16,8 +16,8 @@ def add_number(number):
     url = 'https://'+ account_sid + ':' + auth_token + '@api.twilio.com/2010-04-01/Accounts/'+ account_sid + '/OutgoingCallerIds'
     data = {'PhoneNumber': number}
     r = requests.post(url, data = data)
-    print(r.text)
-    return r.text
+    print(r.json())
+    return r.json()
 
 @app.route('/api/v1/get_image/<meme>:<top>:<bottom>', methods=['GET','POST'],
            strict_slashes=False)
