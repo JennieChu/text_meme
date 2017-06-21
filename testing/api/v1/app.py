@@ -3,13 +3,15 @@ from PIL import Image, ImageDraw, ImageFont
 from io import StringIO
 from io import BytesIO
 from flask import Flask, render_template, jsonify, send_file
+from flask_cors import (CORS, cross_origin)
 import json
 import requests
 import os
 
 app = Flask(__name__)
+CORS(app, resources={r"/api/v1/*": {"origins": "*"}})
 
-@app.route('/add_number/<number>', methods=['GET', 'POST'], strict_slashes=False)
+@app.route('/api/v1/add_number/<number>', methods=['GET', 'POST'], strict_slashes=False)
 def add_number(number):
     account_sid = os.environ['account_sid']
     auth_token = os.environ['auth_token']

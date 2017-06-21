@@ -20,7 +20,7 @@ signUp.controller("mainController",
     function ($scope, $http) {
        // click function to handle when user gives new user name
       $scope.click = function (phoneNumber) {
-	      let url = 'http://34.210.213.199:8080/add_number/' + phoneNumber;
+	      let url = 'http://34.210.213.199:8080/api/v1/add_number/' + phoneNumber;
         $http.get(url).success(function (data) {
            $('#code_phrase').show();
 	         $scope.data = data;
