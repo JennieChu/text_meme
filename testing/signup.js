@@ -22,8 +22,10 @@ signUp.controller("mainController",
       $scope.click = function (phoneNumber) {
 	      let url = 'http://34.210.213.199:8080/add_number/' + phoneNumber;
         $http.get(url).success(function (data) {
+           $('#code_phrase').show();
 	         $scope.data = data;
 	      })
+
       }
     }
 ]);

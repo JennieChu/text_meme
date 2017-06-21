@@ -5,6 +5,7 @@
   <title>Wiki-Trail</title>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script src="signup.js"></script>
   <link rel="stylesheet" type="text/css" href="signup.css">
 </head>
@@ -22,14 +23,17 @@
   <div class="input">
     <div class="src">
       <h2>Sign Up</h2>
-      <p> Enter your phone number </p>
+      <p> Enter your phone number: </p>
       <input ng-model="phoneNumber" type='text' placeholder="Ex. 14151234567">
     </div>
     <div class="btn">
       <button ng-click="click(phoneNumber)" class="inputBtn">Sign Me Up!</button>
     </div>
+    <div class="v_code">
+      <p id="code_phrase" style='display:none'> <b>Your Verification Code is:</b> </p>
+      <p>{{data}}<p>
+    </div>
   </div>
-  {{data}}
 </body>
 
 </html>
