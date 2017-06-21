@@ -6,14 +6,22 @@
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
   <script src="signup.js"></script>
+  <link rel="stylesheet" type="text/css" href="signup.css">
 </head>
 
 <body ng-view ng-controller="mainController">
   <div class="header">
-    <h1 id='title'>Sign Up</h1>
+    <div class="nav">
+      <ul>
+        <li><a href="sign_up.html">Sign Up</a></li>
+        <li><a href="#">Search Memes</a></li>
+        <li><a href="#">About Us</a></li>
+      </ul>
+    </div>
   </div>
   <div class="input">
     <div class="src">
+      <h2>Sign Up</h2>
       <p> Enter your phone number </p>
       <input ng-model="phoneNumber" type='text' placeholder="Ex. 14151234567">
     </div>
