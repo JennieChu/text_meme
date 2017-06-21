@@ -35,22 +35,19 @@ def inbound_sms():
     # Gets the incoming SMS phone number
     inbound_number = request.form.get ("From")
     number_list = [caller.phone_number for caller in caller_ids]
-    if  inbound_number in number_list:
-        print('FOUND')
+    if  inbound_number not in number_list:
+        msg = Message().body("Looks like you havent signed up for TextMeme. You can sign up via this link! INSERT LINK")
     else:
-        url = 'http://34.210.213.199:8080/add_number/' + inbound_number
-        r = requests.get(url)
-        print(r.text)
+        #parse inbound message
+        message = parse_inbound(inbound_message)
+        meme = message[0]
+        top = message[1]
+        bot = message[2]
 
-    #parse inbound message
-    message = parse_inbound(inbound_message)
-    meme = message[0]
-    top = message[1]
-    bot = message[2]
-
-    # Responds with the meme with the img 
-    url = 'http://34.210.213.199:8080/api/v1/get_image/' + meme + ':' + top + ':' + bot
-    msg = Message().body("Here is your meme").media(url)
+        # Responds with the meme with the img 
+        url = 'http://34.210.213.199:8080/api/v1/get_image/' + meme + ':' + top + ':' + bot
+        msg = Message().body("Here is your meme").media(url)
+    
     response.append(msg)
     return Response(str(response), mimetype="application/xml"), 200
 
