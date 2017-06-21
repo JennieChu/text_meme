@@ -1,0 +1,60 @@
+li {
+  list-style-type: none;
+  float: right;
+  padding-right: 10px;
+}
+
+li a {
+  display: block;
+  text-decoration: none;
+}
+
+.title {
+  text-align: center;
+  padding: 10px;
+}
+
+#about_text {
+  width: 50%;
+  margin: 0 auto;
+  text-align: justify;
+}
+
+.bio_container {
+  display:table-row;
+  border-collapse: separate;
+  border-spacing: 30px;
+  position:absolute;
+  left: 20%;
+}
+
+.jennie {
+  border: 1px solid black;
+  display: table-cell;
+  width: 50%;
+  text-align: center;
+  position: relative;
+}
+
+.jay {
+  border: 1px solid black;
+  display: table-cell;
+  width: 50%;
+  text-align: center;
+  position: relative;
+}
+
+.name, .bio, .photo {
+  padding: 20px;
+}
+
+.jay .bio {
+  position: absolute;
+  bottom: 0;
+  right:0;
+  left: 0;
+
+}
+.bio {
+  vertical-align:bottom;
+}
