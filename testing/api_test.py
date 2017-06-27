@@ -36,17 +36,21 @@ def inbound_sms():
     inbound_number = request.form.get ("From")
     number_list = [caller.phone_number for caller in caller_ids]
     if  inbound_number not in number_list:
-        msg = Message().body("Looks like you havent signed up for TextMeme. You can sign up via this link! INSERT LINK")
+        msg = Message().body("Looks like you havent signed up for TextMeme. You can sign up via this link: http://34.210.213.199/sign_up.html#/")
     else:
-        #parse inbound message
+        # Parse inbound message
         message = parse_inbound(inbound_message)
         meme = message[0]
         top = message[1]
         bot = message[2]
 
-        # Responds with the meme with the img 
-        url = 'http://34.210.213.199:8080/api/v1/get_image/' + meme + ':' + top + ':' + bot
-        msg = Message().body("Here is your meme").media(url)
+        # Check if meme exists, if not let user know
+        if meme not in open('meme_list').read():
+            msg = Message().body("That's not a meme. Check our our available memes here: INSERT").media("http://m.memegen.com/hxg2qb.jpg")
+        else:
+            # Responds with the meme with the img 
+            url = 'http://34.210.213.199:8080/api/v1/get_image/' + meme + ':' + top + ':' + bot
+            msg = Message().body("Here is your meme").media(url)
     
     response.append(msg)
     return Response(str(response), mimetype="application/xml"), 200
