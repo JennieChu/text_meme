@@ -12,7 +12,7 @@ def display():
     """
     return a website
     """
-    with open('/home/ubuntu/text_meme/web_flask/meme_list') as f:
+    with open('meme_list') as f:
         content = f.readlines()
 
     content = [x.strip() for x in content]

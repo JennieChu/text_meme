@@ -55,7 +55,7 @@ img {
 
 .search {
     border: 1px solid #1985A1;
-    height: 40px;
+    height: 50px;
     width: 40%;
     border-radius: 4px;
     position: relative;
@@ -75,4 +75,34 @@ img {
 
 .divider {
   font-size: 25px;
+}
+
+button {
+    height: 38px;
+    width: 20%;
+    background-color: #1985A1;
+    border:0;
+    border-radius: 4px;
+    float: right;
+    margin: 5px 5px;
+    font-size: 18px;
+    color: white;
+}
+
+button:hover, button:focus {
+    background: rgba(30, 158, 190, 0.9);
+}
+
+input[type=text] {
+    width: 70%;
+    float: left;
+    margin-top: 10px;
+    margin-left: 10px;
+    padding: 5px 5px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+intput[type=text]:focus {
+    width: 100%;
 }
