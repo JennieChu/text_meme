@@ -18,10 +18,10 @@ def display():
     content = [x.strip() for x in content]
     content_url = OrderedDict()
     for i in content:
-        new_url = "../static/images/memages/" + i
+        new_url = "static/images/" + i
         content_url[new_url] = i.replace('+', ' ')
 
     return render_template("meme_check.html", content=content_url)
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5001)
+    app.run(host="0.0.0.0", port=1337)
