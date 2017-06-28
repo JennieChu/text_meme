@@ -1,0 +1,51 @@
+li {
+  list-style-type: none;
+  float: right;
+  padding-right: 10px;
+}
+
+li a {
+  display: block;
+  text-decoration: none;
+}
+
+#title, #tagline, #info {
+  text-align: center;
+}
+
+.container {
+  text-align: center;
+}
+
+.signbtn {
+  text-align: center;
+}
+
+img {
+  max-width: 30%;
+  max-height: 30%;
+}
+
+.cmt_container {
+  /*text-align: center;*/
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+.cmt_container > div {
+  /*display: inline-block;*/
+  display: flex;
+  justify-content: center;
+
+}
+
+.cmt_container > div > p {
+  max-width: 30%;
+  font-size: 20px;
+  position: absolute;
+  top: 30%;
+}
+
+#title {
+  font-size: 56px;
+}
