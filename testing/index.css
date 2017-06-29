@@ -27,15 +27,14 @@ img {
 }
 
 .cmt_container {
-  /*text-align: center;*/
   display: flex;
   justify-content: center;
   position: relative;
 }
 .cmt_container > div {
-  /*display: inline-block;*/
   display: flex;
   justify-content: center;
+
 
 }
 
@@ -45,6 +44,7 @@ img {
   position: absolute;
   top: 30%;
 }
+
 
 #title {
   font-size: 56px;
@@ -64,4 +64,14 @@ img {
     color: red;
     padding: 20px;
     font-size: 15px;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.column {
+  flex-basis: 100%;
 }
