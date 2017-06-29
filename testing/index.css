@@ -36,6 +36,7 @@ img {
   /*display: inline-block;*/
   display: flex;
   justify-content: center;
+
 }
 
 .cmt_container > div > p {
@@ -62,4 +63,5 @@ img {
 .signbtn a {
     color: red;
     padding: 20px;
+    font-size: 15px;
 }
