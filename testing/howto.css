@@ -1,0 +1,47 @@
+li {
+  list-style-type: none;
+  float: right;
+  padding-right: 10px;
+}
+
+li a {
+  display: block;
+  text-decoration: none;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  border-bottom: 1px solid black;
+  margin: 0 50px;
+  align-items: center;
+}
+
+.column {
+  flex-basis: 100%;
+  text-align: center;
+  margin: 20px;
+}
+
+.row:last-child {
+  border-bottom: none;
+}
+
+@media screen and (min-width: 800px) {
+  .column {
+    flex: 1;
+  }
+}
+
+.body_container h2 {
+  text-align: center;
+}
+
+.column img {
+  max-width: 30%;
+}
+
+.column p {
+  font-size: 22px;
+}
